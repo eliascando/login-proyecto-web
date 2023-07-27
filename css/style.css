@@ -3,3 +3,331 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .bienvenida-div{
+    color: rgb(121, 0, 121);
+    font-weight: bolder;
+    padding-bottom: 10px;
+  }
+  
+  /* Estilos de formulario */
+  form {
+    flex-direction: column;
+    gap: 10px;
+    max-width: 800px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+  }
+  
+  .title {
+    font-size: 28px;
+    color: rgb(121, 0, 121);
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    padding-bottom: 10px;
+  }
+  
+  .title::before, .title::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 0px;
+    background-color: rgb(121, 0, 121);
+  }
+  
+  .title::before {
+    width: 18px;
+    height: 18px;
+    background-color: rgb(121, 0, 121);
+  }
+  
+  .title::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+  }
+  
+  .message, .signin {
+    color: rgba(88, 87, 87, 0.822);
+    font-size: 14px;
+  }
+  
+  .form label {
+    position: relative;
+  }
+  
+  .form label .input {
+    width: 100%;
+    padding: 10px 10px 20px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+  }
+  
+  .form label .input + span {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    color: grey;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+  }
+  
+  .form label .input:placeholder-shown + span {
+    top: 15px;
+    font-size: 0.9em;
+  }
+  
+  .form label .input:focus + span,
+  .form label .input:valid + span {
+    top: 30px;
+    font-size: 0.7em;
+    font-weight: 600;
+  }
+  
+  .form label .input:valid + span {
+    color: green;
+  }
+  
+  .div-selector{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .div-selector .label{
+    width: 25%;
+    padding: 10px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-bottom: 14px;
+    font-size: 15px;
+    color: #797474;
+  }
+  
+  .div-selector .selector{
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+  
+  h2 {
+    color: #333;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+  }
+  
+  .submit {
+    border: none;
+    outline: none;
+    background-color: rgb(121, 0, 121);
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    transform: .3s ease;
+    margin: 0 auto ;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .submit:hover {
+    background-color: rgb(83, 5, 83);
+  }
+  
+  .activa{
+    display: block;
+    background: red;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid red;
+    width: 41%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+  }
+  
+  p {
+    margin-bottom: 10px;
+  }
+  
+  @keyframes pulse {
+    from {
+      transform: scale(0.9);
+      opacity: 1;
+    }
+    to {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+  
+  /* Estilos específicos para procesar.php */
+  
+  .title2 {
+    font-size: 28px;
+    color: rgb(121, 0, 121);
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+  }
+  
+  .container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center; 
+    max-width: 500px; 
+    margin: 0 auto; 
+  }
+  
+  .container h2 {
+    color: #333;
+    width: auto;
+    padding: 10px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #797474;
+    background-color: #f1f1f1;
+  }
+  .container p {
+    font-weight: bold;
+  }
+
+.div-boton-productos{
+  margin-top: 10px;
+  width: 385px;
+}
+.div-boton-productos button{
+  background: rgb(9, 94, 9);
+  cursor: pointer;
+}
+.div-boton-productos button:hover{
+  background: rgb(5, 48, 5);
+}
+.div-boton-salir button{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  margin-left: 10px;
+  background-color: #e73a0f;
+  font-weight: bolder;
+  color: white;
+  border-style: none;
+  border-radius: 10px;
+  width: 125px;
+  padding: 15px;
+  margin: 15px;
+  cursor: pointer;
+}
+.div-boton-salir button:hover{
+  background: rgb(184, 47, 13);
+}
+
+#boton-volver{
+  width: 125px;
+  margin-top: 15px;
+}
+#productos #bienvenida{
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 10px;
+  color: rgb(121, 0, 121);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border-bottom: 1px solid black;
+  padding: 8px;
+  color: black;
+  font-weight: 400;
+}
+
+th {
+  background: rgb(121, 0, 121);
+  color: #fff;
+}
+
+tr {
+  background-color: #f1f1f1;
+  border-radius: 15px;
+}
+
+#body-login{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+#body-login #login{
+  width: 100%;
+  max-width: 300px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10%;
+}
+#login h1{
+  color: rgb(121, 0, 121);
+  font-weight: bolder;
+  padding-bottom: 10px;
+}

@@ -3,14 +3,93 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
     <title>Inicio</title>
   </head>
   <body>
-    <h1 id="bienvenida"></h1>
-    <div id="hora"></div>
+    <div class="bienvenida-div">
+      <h1 id="bienvenida"></h1>
+    </div>
 
-    <button id="boton-salir">Cerrar sesión</button>
-    
+    <div class="alerta"></div>
+    <form class="form" onsubmit="return CamposVacios()" method="POST" action="procesar.php">
+    <p class="title">Registro de Productos</p>
+    <p class="message">Agrega un nuevo producto a la tienda</p>
+
+        <label>
+            <input required="" placeholder="" type="text" class="input" oninput="SoloLetras(this)" name="nombre" id="nombre" autocomplete="off">
+            <span>Producto</span>
+        </label> 
+
+        <div class="flex">
+            <label>
+                <input required="" placeholder="" type="text" class="input" oninput="SoloDecimales(this)" name="precio" id="precio" autocomplete="off">
+                <span>Precio</span>
+            </label>
+            
+            <label>
+                <input required="" placeholder="" type="text" class="input" oninput="SoloNumeros(this)" name="stock" id="stock" autocomplete="off">
+                <span>Stock</span>
+            </label>
+        </div>
+
+        <label>
+        <div class="div-selector">
+            <div class="label">
+                <label for="categoria">Categoria:</label>
+            </div>
+            <select name="categoria" class="selector">
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+                <option value="niño">Niño</option>
+                <option value="niña">Niña</option>
+            </select>
+        </div>
+        </label>
+
+        <label>
+        <div class="div-selector">
+            <div class="label">
+                <label for="talla">Talla:</label>
+            </div>
+            <select name="talla" class="selector">
+                <option value="s">S</option>
+                <option value="m">M</option>
+                <option value="l">L</option>
+                <option value="xl">XL</option>
+            </select>
+        </div>
+        </label>
+
+        <label>
+        <div class="div-selector">
+            <div class="label">
+                <label for="color">Color:</label>
+            </div>
+            <select name="color" class="selector">
+                <option value="rojo">Rojo</option>
+                <option value="azul">Azul</option>
+                <option value="verde">Verde</option>
+                <option value="amarillo">Amarillo</option>
+            </select>
+        </div>
+        </label>
+
+        <label>
+            <input required="" placeholder="" type="text" class="input" oninput="SoloLetras(this)" name="descripcion" id="descripcion">
+            <span>Descripción</span>
+        </label>
+        
+        <button class="submit">Agregar Producto</button>
+    </form>
+
+    <div class="div-boton-productos">
+      <button id="boton-productos" class="submit" onclick="window.location.href='productos.html'">Ver Productos</button>
+    </div>
+    <div class="div-boton-salir">
+      <button id="boton-salir">Cerrar sesión</button>
+    </div>
+
     <script type="module">
       window.onload = function() {
         const usuarioString = localStorage.getItem('usuario');
@@ -26,9 +105,54 @@
         window.location.href = 'index.html';
       };
       
+      document.querySelector('.form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Obtener los valores ingresados por el usuario
+        const nombre = document.getElementById('nombre').value;
+        const precio = document.getElementById('precio').value;
+        const stock = document.getElementById('stock').value;
+        const categoria = document.querySelector('[name="categoria"]').value;
+        const talla = document.querySelector('[name="talla"]').value;
+        const color = document.querySelector('[name="color"]').value;
+        const descripcion = document.getElementById('descripcion').value;
+
+        // Crear un objeto con los datos del producto
+        const producto = {
+          nombre: nombre,
+          precio: precio,
+          stock: stock,
+          categoria: categoria,
+          talla: talla,
+          color: color,
+          descripcion: descripcion
+        };
+
+        // Verificar si ya hay datos de productos en el Local Storage para este usuario
+        const usuarioString = localStorage.getItem('usuario');
+        console.log(usuarioString)
+        if (usuarioString) {
+            const usuario = JSON.parse(usuarioString);
+            usuario.productos.push(producto);
+            localStorage.setItem('usuario', JSON.stringify(usuario));
+        } else {
+            // Si es la primera vez que guarda productos, creamos la estructura inicial del usuario
+            const usuarioNuevo = {
+                nombre: usuario.nombre, // Aquí puedes asignar el nombre del usuario
+                apellido: usuario.apellido, // Aquí puedes asignar el apellido del usuario
+                productos: [producto]
+            };
+            localStorage.setItem('usuario', JSON.stringify(usuarioNuevo));
+        }
+
+        // Limpiar el formulario después de guardar el producto
+        document.querySelector('.form').reset();
+      });
+
       const botonSalir = document.getElementById('boton-salir');
       botonSalir.addEventListener('click', salir);
     </script>
     <script type="module" src="js/app.js"></script>
+    <script src="js/validaciones.js"></script>
   </body>
 </html>

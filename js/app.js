@@ -14,11 +14,5 @@ const iniciarSesion = (e) => {
   }
 };
 
-const horaDiv = document.getElementById('hora');
-setInterval(() => {
-  const hora = new Date();
-  horaDiv.innerHTML = `La hora es ${hora.toLocaleTimeString()}`
-}, 1000);
-
 const botonIngresar = document.getElementById('boton-ingresar');
 botonIngresar.addEventListener('click', iniciarSesion);
