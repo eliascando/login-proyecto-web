@@ -1,11 +1,13 @@
-window.onload = function() {
+import { obtenerProductos } from './services.js';
+
+window.onload = async function() {
     const usuarioString = localStorage.getItem('usuario');
     if (usuarioString) {
         const usuario = JSON.parse(usuarioString);
         const bienvenida = document.getElementById('bienvenida');
-        bienvenida.textContent = `Productos registrados por ${usuario.nombre}`;
-
-        mostrarProductos(usuario.productos);
+        bienvenida.textContent = `Productos registrados por ${usuario.nombres} ${usuario.apellidos}`;
+        const productos = await obtenerProductos(usuario.cedula);
+        mostrarProductos(productos);
     }
 };
 

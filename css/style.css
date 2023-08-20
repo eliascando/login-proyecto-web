@@ -331,3 +331,8 @@ tr {
   font-weight: bolder;
   padding-bottom: 10px;
 }
+#boton-registrar{
+  width: 250px;
+  margin-top: 15px;
+  background-color: green;
+}

@@ -12,7 +12,7 @@
     </div>
 
     <div class="alerta"></div>
-    <form class="form" onsubmit="return CamposVacios()" method="POST" action="procesar.php">
+    <form class="form" onsubmit="return CamposVacios()">
     <p class="title">Registro de Productos</p>
     <p class="message">Agrega un nuevo producto a la tienda</p>
 
@@ -90,69 +90,8 @@
       <button id="boton-salir">Cerrar sesión</button>
     </div>
 
-    <script type="module">
-      window.onload = function() {
-        const usuarioString = localStorage.getItem('usuario');
-        if (usuarioString) {
-          const usuario = JSON.parse(usuarioString);
-          const bienvenida = document.getElementById('bienvenida');
-          bienvenida.textContent = `Hola ${usuario.nombre} ${usuario.apellido}!`;
-        }
-      };
-      
-      const salir = () => {
-        localStorage.removeItem('usuario');
-        window.location.href = 'index.html';
-      };
-      
-      document.querySelector('.form').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        // Obtener los valores ingresados por el usuario
-        const nombre = document.getElementById('nombre').value;
-        const precio = document.getElementById('precio').value;
-        const stock = document.getElementById('stock').value;
-        const categoria = document.querySelector('[name="categoria"]').value;
-        const talla = document.querySelector('[name="talla"]').value;
-        const color = document.querySelector('[name="color"]').value;
-        const descripcion = document.getElementById('descripcion').value;
-
-        // Crear un objeto con los datos del producto
-        const producto = {
-          nombre: nombre,
-          precio: precio,
-          stock: stock,
-          categoria: categoria,
-          talla: talla,
-          color: color,
-          descripcion: descripcion
-        };
-
-        // Verificar si ya hay datos de productos en el Local Storage para este usuario
-        const usuarioString = localStorage.getItem('usuario');
-        console.log(usuarioString)
-        if (usuarioString) {
-            const usuario = JSON.parse(usuarioString);
-            usuario.productos.push(producto);
-            localStorage.setItem('usuario', JSON.stringify(usuario));
-        } else {
-            // Si es la primera vez que guarda productos, creamos la estructura inicial del usuario
-            const usuarioNuevo = {
-                nombre: usuario.nombre, // Aquí puedes asignar el nombre del usuario
-                apellido: usuario.apellido, // Aquí puedes asignar el apellido del usuario
-                productos: [producto]
-            };
-            localStorage.setItem('usuario', JSON.stringify(usuarioNuevo));
-        }
-
-        // Limpiar el formulario después de guardar el producto
-        document.querySelector('.form').reset();
-      });
-
-      const botonSalir = document.getElementById('boton-salir');
-      botonSalir.addEventListener('click', salir);
-    </script>
+    <script type="module" src="js/home.js"></script>
     <script type="module" src="js/app.js"></script>
-    <script src="js/validaciones.js"></script>
+    <script src="js/validaciones.js"></script>"
   </body>
 </html>

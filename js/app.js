@@ -1,18 +1,33 @@
-import { usuarios } from '../data/usuarios.js';
+import { validarUsuario } from './services.js';
 
-const iniciarSesion = (e) => {
+const iniciarSesion = async(e) => {
   e.preventDefault();
   const email = document.querySelector('#email').value;
   const pass = document.querySelector('#pass').value;
-  const usuario = usuarios.find((usuario) => usuario.email === email && usuario.contraseña === pass);
+  
+  const usuario = {
+    correo: email,
+    password: pass
+  };
 
-  if (usuario) {
-    localStorage.setItem('usuario', JSON.stringify(usuario));
-    window.location.href = 'home.html';
-  } else {
+  console.log(usuario);
+
+  const response = await validarUsuario(usuario);
+  console.log(response);
+  if(response){
+    window.location.href = '/home.html';
+    localStorage.setItem('usuario', JSON.stringify(response));
+  }else{
     alert('Usuario o contraseña incorrectos');
   }
 };
 
 const botonIngresar = document.getElementById('boton-ingresar');
+const botonRegistrar = document.getElementById('boton-registrar');
+
+botonRegistrar.addEventListener('click', (e) => {
+  e.preventDefault();
+  window.location.href = '/registrar.html';
+});
+
 botonIngresar.addEventListener('click', iniciarSesion);
